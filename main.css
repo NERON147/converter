@@ -11,11 +11,13 @@ body {
 
 
 .header {
+    margin-top: 80px;
     background: linear-gradient(140.59deg, #562EC2 29.59%, #A07EFE 73.59%);
     border-radius: 17px;
     height: auto;
     width: auto;
-
+    margin-bottom: 100px;
+    padding-bottom: 100px;
 }
 
 .header__text {
@@ -43,6 +45,8 @@ body {
     max-width: 900px;
     margin: 0 auto;
     padding: 80px 0;
+    display: flex;
+    gap: 120px;
 }
 
 .section__left {
@@ -50,9 +54,12 @@ body {
 }
 
 .line {
-   
-border-bottom:3px solid #9EC1D4;
-
+    border-radius: 20px;
+    margin-top: 16px;
+    border: none; /* Убираем границу */
+    background-color: rgba(214, 220, 226, 0.5); /* Цвет линии */
+    color: rgba(214, 220, 226, 0.5); /* Цвет линии для IE6-7 */
+    height: 2px; /* Толщина линии */
 }
 
 .give {
@@ -85,10 +92,28 @@ border-bottom:3px solid #9EC1D4;
     color: rgba(78, 89, 131, 0.5);
     font-size: 14px;
     font-weight: 400;
+    margin-bottom: 18px;
 }
 
+.sel {
+    width: 50px;
+    color: #4E5983;
+    font-weight: 300;
+    font-size: 16px;
+    background: url(./img/Vector.svg) no-repeat right;
+    appearance: none;
+    outline: none;
+}
 
+.vert {
+    
+}
 
+.liniya {
+    position: absolute;
+    padding-left: 180px;
+    pointer-events: none
+}
 
 
 
