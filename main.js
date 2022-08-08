@@ -1,9 +1,7 @@
-const inputCost = document.querySelector('.bablo');
-const elementUSD = document.querySelector('[data-value="USD"]');
-const elementEUR = document.querySelector('[data-value="EUR"]');
 const input = document.querySelector('#input')
 const result = document.querySelector('#result')
 const select = document.querySelector('#select')
+const rates = {}
 
 
 const cleavePriceSetting = {
@@ -12,31 +10,55 @@ const cleavePriceSetting = {
     delimiter: ' ',
 }
 
-const cleaveCost = new Cleave(inputCost, cleavePriceSetting);
+const cleaveCost = new Cleave(input, cleavePriceSetting);
 
+async function getData () {
+    const response = await fetch('https://www.cbr-xml-daily.ru/daily_json.js');
+    const data = await response.json();
+    const result = await data
+ 
 
-const valUsd = function () {
-fetch('https://www.cbr-xml-daily.ru/daily_json.js')
-    .then(response => response.json())
-    .then(json => console.log(json.Valute.USD.Value))
-    console.log(json)
-    
-}
-const valEur = function () { 
-fetch('https://www.cbr-xml-daily.ru/daily_json.js')
-.then(response => response.json())
-.then(json => console.log( json.Valute.EUR.Value))
+    rates.USD = result.Valute.USD
+    rates.EUR = result.Valute.EUR
+
+    console.log(rates)
 }
 
-    console.log(valUsd());
-    valEur();
-
+getData ();
 
 input.oninput = function () {
-    console.log('huy');
-    result.value = input.value / a;
-}
+        
+        result.value = (parseFloat(input.value) / rates[select.value].Value).toFixed(2)
+    };
     
+select.oninput = function () {
+        
+    result.value = (parseFloat(input.value) / rates[select.value].Value).toFixed(2)
+}
+
+// const valUsd = function () {
+// fetch('https://www.cbr-xml-daily.ru/daily_json.js')
+//     .then(response => response.json())
+//     .then(json => console.log(json.Valute.USD.Value))
+//     rates.USD = json.Valute.USD
+//     console.log(rates.USD)
+// }
+    
+// valUsd()
+
+// const valEur = function () { 
+// fetch('https://www.cbr-xml-daily.ru/daily_json.js')
+// .then(response => response.json())
+// .then(json => console.log( json.Valute.EUR.Value))
+// }
+
+//     console.log(valUsd());
+//     valEur();
+
+
+// input.oninput = function () {
+//     console.log('huy');
+// }
 
     
 
