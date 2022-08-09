@@ -1,7 +1,12 @@
+
 const input = document.querySelector('#input')
 const result = document.querySelector('#result')
 const select = document.querySelector('#select')
 const rates = {}
+
+input.value = input.value.replace(/\s/g, '');
+
+
 
 
 const cleavePriceSetting = {
@@ -28,13 +33,14 @@ getData ();
 
 input.oninput = function () {
         
-        result.value = (parseFloat(input.value) / rates[select.value].Value).toFixed(2)
+        result.value = (input.value.replace(/\s/g, '') / rates[select.value].Value).toFixed(2)
     };
     
 select.oninput = function () {
         
-    result.value = (parseFloat(input.value) / rates[select.value].Value).toFixed(2)
+    result.value = (input.value.replace(/\s/g, '') / rates[select.value].Value).toFixed(2)
 }
+
 
 // const valUsd = function () {
 // fetch('https://www.cbr-xml-daily.ru/daily_json.js')
