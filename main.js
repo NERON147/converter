@@ -4,7 +4,7 @@ const result = document.querySelector('#result')
 const select = document.querySelector('#select')
 const rates = {}
 
-input.value = input.value.replace(/\s/g, '');
+
 
 
 
