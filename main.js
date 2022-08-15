@@ -1,6 +1,6 @@
 
-const input = document.querySelector('#input')
-const result = document.querySelector('#result')
+const inputRub = document.querySelector('#inputRub')
+const resultValute = document.querySelector('#resultValute')
 const select = document.querySelector('#select')
 const rates = {}
 
@@ -11,34 +11,45 @@ const cleavePriceSetting = {
     delimiter: ' ',
 }
 
-const cleaveCost = new Cleave(input, cleavePriceSetting);
-const cleaveCost2 = new Cleave(result, cleavePriceSetting);
+const cleaveCost = new Cleave(inputRub, cleavePriceSetting);
+
+
 
 async function getData () {
-    const response = await fetch('https://www.cbr-xml-daily.ru/daily_json.js');
-    const data = await response.json();
-    const result = await data
+    // const response = await fetch('https://www.cbr-xml-daily.ru/daily_json.js');
+    // const data = await response.json();
+    // const result = await data
  
 
-    rates.USD = result.Valute.USD
-    rates.EUR = result.Valute.EUR
+    // rates.USD = result.Valute.USD
+    // rates.EUR = result.Valute.EUR
+    axios.get('https://www.cbr-xml-daily.ru/daily_json.js')
+    .then((res) =>{
+        const result = res.data
 
-    console.log(rates)
+        rates.USD = result.Valute.USD
+        rates.EUR = result.Valute.EUR
+
+    })
 }
+
+
+
 
 getData ();
 
-input.oninput = function () {
+inputRub.oninput = function () {
         
     const sum = (+cleaveCost.getRawValue() / rates[select.value].Value).toFixed(2)
-    result.value = sum
+    resultValute.value = sum
    
         // result.value = (input.value.replace(/\s/g, '') / rates[select.value].Value).toFixed(2)
+        let cleaveCost2 = new Cleave(resultValute, cleavePriceSetting);
     };
     
 select.oninput = function () {
         
-    result.value = (input.value.replace(/\s/g, '') / rates[select.value].Value).toFixed(2)
+    resultValute.value = (inputRub.value.replace(/\s/g, '') / rates[select.value].Value).toFixed(2)
 }
 
 
